@@ -12,10 +12,10 @@ impl Message {
             Message::Move { x, y } => {
                 println!("I move to ({},{})", x, y);
             },
-            Message::Write(ref text) => {
+            Message::Write(text) => {
                 println!("Write: '{}'", text);
             },
-            Message::ChangeColor(ref u1, u2, u3) => {
+            Message::ChangeColor(u1, u2, u3) => {
                 println!("Changing color to ({}, {}, {})...", u1, u2, u3)
             }
         }
@@ -30,4 +30,21 @@ fn main() {
     msg2.call();
     msg3.call();
     msg4.call();
+
+    let first_msg = Some(msg1);
+    let last_msg = Some(msg4);
+
+    if let Some(Message::Move { x: 1, y: 1}) = first_msg {
+        println!("You started by moving to (1,1)");
+    } else {
+        println!("God. Is. A. Crab.");
+    }
+
+    if let Some(Message::Quit) = last_msg {
+        println!("/resign");
+    } else {
+        println!("Not yet.");
+    }
+
+
 }
